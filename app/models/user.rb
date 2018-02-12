@@ -1,5 +1,7 @@
 class User < ApplicationRecord
 
+  has_secure_password
+
   has_many :user_images
   has_many :images, through: :user_images
 
@@ -11,8 +13,8 @@ class User < ApplicationRecord
      mood_score
   end
 
-  def show_moods(user)
-    moods = Mood.find_by(score: user.mood_calculator)
+  def show_moods
+    moods = Mood.find_by(score: self.mood_calculator)
   end
 
 end

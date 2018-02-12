@@ -4,14 +4,12 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(name: params[:user][:name])
-    if @user
-      session[:user_id] = @user.id
-      redirect_to user_path(@user)
-    else
-      flash[:message] = "No such User! Try Again."
-      render :new
-    end
+    user = User.find_by(name: params[:user][:name])
+    user = user.try(:authenticate, params[:user][:password])
+    return redirect_to '/login' unless user
+    session[:user_id] = user.id
+    @user = user
+    redirect_to @user
   end
 
   def destroy
