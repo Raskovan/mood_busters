@@ -1,3 +1,8 @@
-<h1>Image</h1>
-Image Name: <%= @image.name %><br>
-Mood Assigned: <%= @image.mood.name %>
+<h1>Mood: <%= @image.mood.name %></h1>
+<img src="<%= @image.name %>" alt="<%= @image.mood.name %>" width="400"><br>
+<br>
+<%= link_to "Edit Image", edit_image_path %>
+<br><br>
+<%= button_to "Delete Image", @image, method: 'delete' %><br>
+<br>
+<%= link_to "Moods Page", moods_path %>

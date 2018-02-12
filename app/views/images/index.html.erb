@@ -1,8 +1,8 @@
 <h1>All Images</h1>
 
 <% @images.each do |image| %>
-  <b><%= image.name %></b>
+  <a href="<%= image_path(image) %>"><img src="<%= image.name %>" alt="<%= image.mood.name %>" width="200"></a>
   <ul>
-  <li><%= image.mood.name %></li>
+  <%= image.mood.name %>
   </ul>
 <% end %>

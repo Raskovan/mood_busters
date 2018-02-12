@@ -1,10 +1,12 @@
 <h1>Welcome <%= current_user.name %></h1>
 <%= link_to "Log Out", '/logout', {method: 'delete'} %>
 <br><br>
+
+
 You chose these images:<br>
 <ul>
   <% @user.images.each do |image| %>
-    <li><%= image.name %></li>
+    <img src="<%= image.name %>" alt="<%= image.mood.name %>" width="200">
   <% end %>
 </ul>
 Your moods are:

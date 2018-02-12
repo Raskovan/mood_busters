@@ -7,10 +7,10 @@
 <%= form_tag '/login' do %>
   <label for="name">Please Log In</label>
   <%= text_field_tag :'user[name]' %>
-  <%= submit_tag "Login" %>
+  <%= submit_tag "Login" %> or <%= link_to "SignUp", new_user_path %>
 <% end %>
 <br>
 
-<% Image.order("RANDOM()").limit(10).each do |image| %>
-  <%= image.name %><br>
+<% Image.order("RANDOM()").limit(3).each do |image| %>
+  <img src="<%= image.name %>" alt="<%= image.mood.name %>" width="400"><br>
 <% end %>
