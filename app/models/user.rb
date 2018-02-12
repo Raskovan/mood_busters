@@ -11,8 +11,16 @@ class User < ApplicationRecord
      mood_score
   end
 
-  def show_moods(user)
-    moods = Mood.find_by(score: user.mood_calculator)
+  def show_mood
+    if self.mood_calculator < Mood.minimum(:score)
+      min_score = Mood.minimum(:score)
+      mood = Mood.find_by(score: min_score)
+    elsif self.mood_calculator > Mood.maximum(:score)
+      max_score = Mood.maximum(:score)
+      mood = Mood.find_by(score: max_score)
+    else
+      mood = Mood.find_by(score: self.mood_calculator)
+    end
   end
 
 end

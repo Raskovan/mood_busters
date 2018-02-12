@@ -4,7 +4,8 @@
   <tr>
     <th>
     <% @moods.each do |mood| %>
-      <%= mood.name %><br>
+      <%= link_to mood.name, mood_path(mood) %>
+      <%= mood.score %><br>
       <% mood.images.each do |image| %>
       <a href="<%= image_path(image) %>"><img src="<%= image.name %>" alt="<%= image.mood.name %>" width="200"></a>
     <% end %>

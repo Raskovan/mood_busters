@@ -18,6 +18,16 @@ class MoodsController < ApplicationController
     redirect_to mood_path(@mood)
   end
 
+  def edit
+    @mood = Mood.find_by(id: params[:id])
+  end
+
+  def update
+    @mood = Mood.find_by(id: params[:id])
+    @mood.update(mood_params)
+    redirect_to @mood
+  end
+
   def destroy
     @mood = Mood.find_by(id: params[:id])
     @mood.destroy
@@ -27,7 +37,7 @@ class MoodsController < ApplicationController
   private
 
   def mood_params
-    params.require(:mood).permit(:name)
+    params.require(:mood).permit(:name, :score)
   end
 
 
