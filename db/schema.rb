@@ -1,4 +1,4 @@
-ActiveRecord::Schema.define(version: 20180211010630) do
+ActiveRecord::Schema.define(version: 20180212193454) do
 
   create_table "images", force: :cascade do |t|
     t.string "name"
@@ -11,6 +11,7 @@ ActiveRecord::Schema.define(version: 20180211010630) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "score"
   end
 
   create_table "user_images", force: :cascade do |t|

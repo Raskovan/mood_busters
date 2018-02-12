@@ -16,6 +16,11 @@ Your moods are:
   <% end %>
 </ul>
 
+Your mood score is:
+
+<%= @user.mood_calculator%>
+<%= show_mood(@user) %>
+
 
 
 <%= button_to "Delete a User", @user, method: 'delete' %>
