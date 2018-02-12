@@ -1,0 +1,12 @@
+<h1>All Users</h1>
+
+<% @users.each do |user| %>
+  <%= link_to user.name, user_path(user) %><br>
+  <ul>
+
+      <% user.images.each do |image| %>
+        <li><%= image.mood.name %></li>
+      <% end %>
+  </ul>
+
+<% end %>

@@ -1,0 +1,10 @@
+<h1>All Moods</h1>
+
+<% @moods.each do |mood| %>
+  <b><%= mood.name %></b><br>
+    <% mood.images.each do |image| %>
+      <ul>
+        <li><%= image.name %></li>
+      </ul>
+    <% end %>
+<% end %>

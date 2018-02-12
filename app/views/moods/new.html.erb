@@ -1,0 +1,7 @@
+<h1>Create a Mood</h1>
+
+<%= form_for @mood do |f| %>
+  <%= f.label "Mood" %>
+  <%= f.text_field :name %>
+  <%= f.submit %>
+<% end %>

@@ -1,0 +1,17 @@
+<h1>Create a User</h1>
+
+<%= form_for @user do |f| %>
+  <%= f.label "Name" %>
+  <%= f.text_field :name %><br>
+  <br>
+  <%= f.label "Choose Images:" %><br>
+
+
+
+    <% Image.all.each do |image| %>
+      <%= check_box_tag "user[image_ids][]", image.id, @user.image_ids.include?(image.id), id: dom_id(image) %>
+      <%= label_tag dom_id(image), image.name %><br>
+    <% end %>
+<br>
+  <%= f.submit %>
+<% end %>

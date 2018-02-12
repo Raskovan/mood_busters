@@ -1,0 +1,8 @@
+<h1>All Images</h1>
+
+<% @images.each do |image| %>
+  <b><%= image.name %></b>
+  <ul>
+  <li><%= image.mood.name %></li>
+  </ul>
+<% end %>

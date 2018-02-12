@@ -1,0 +1,19 @@
+<h1>Welcome <%= current_user.name %></h1>
+<%= link_to "Log Out", '/logout', {method: 'delete'} %>
+<br><br>
+You chose these images:<br>
+<ul>
+  <% @user.images.each do |image| %>
+    <li><%= image.name %></li>
+  <% end %>
+</ul>
+Your moods are:
+<ul>
+  <% @user.images.each do |image| %>
+    <li><%= image.mood.name %></li>
+  <% end %>
+</ul>
+
+
+
+<%= button_to "Delete a User", @user, method: 'delete' %>

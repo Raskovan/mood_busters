@@ -1,0 +1,16 @@
+<h1>Welcome to the Mood Busters!</h1>
+
+<% if flash[:message] %>
+  <i><%= flash[:message] %></i> <br>
+<% end %>
+
+<%= form_tag '/login' do %>
+  <label for="name">Please Log In</label>
+  <%= text_field_tag :'user[name]' %>
+  <%= submit_tag "Login" %>
+<% end %>
+<br>
+
+<% Image.order("RANDOM()").limit(10).each do |image| %>
+  <%= image.name %><br>
+<% end %>
