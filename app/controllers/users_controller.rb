@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  def welcome
+     require_logged_in
+  end
 
   def index
     @users = User.all
@@ -13,9 +16,10 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
-    @user.save
-    redirect_to user_path(@user)
+    @user = User.create(user_params)
+    return redirect_to '/users/new' unless @user.save
+    session[:user_id] = @user.id
+    redirect_to @user
   end
 
   def destroy
@@ -34,7 +38,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, image_ids: [])
+    params.require(:user).permit(:name, :password, :password_digest, image_ids: [])
   end
 
 

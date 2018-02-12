@@ -1,5 +1,7 @@
 class User < ApplicationRecord
 
+  has_secure_password
+
   has_many :user_images
   has_many :images, through: :user_images
 
@@ -11,6 +13,9 @@ class User < ApplicationRecord
      mood_score
   end
 
+
+
+
   def show_mood
     if self.mood_calculator < Mood.minimum(:score)
       min_score = Mood.minimum(:score)
@@ -21,6 +26,7 @@ class User < ApplicationRecord
     else
       mood = Mood.find_by(score: self.mood_calculator)
     end
+
   end
 
 end
