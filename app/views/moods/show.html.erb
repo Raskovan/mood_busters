@@ -1,4 +1,6 @@
 <h1>Mood</h1>
 
 <%= @mood.name %><br>
-<%= button_to "Delete the Mood", @mood, method: 'delete' %>
+<%= link_to "Edit the Mood", edit_mood_path %><br>
+<%= button_to "Delete the Mood", @mood, method: 'delete' %><br>
+<%= link_to "Go to Moods", moods_path %>
