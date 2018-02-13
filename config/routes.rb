@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :user_moods
   resources :user_images
   resources :moods
   resources :images

@@ -22,12 +22,6 @@ class UsersController < ApplicationController
     redirect_to @user
   end
 
-  def destroy
-    @user = User.find_by(id: params[:id])
-    @user.destroy
-    redirect_to users_path
-  end
-
   def mood
     @user = User.find_by(id: params[:id])
   end
@@ -40,7 +34,15 @@ class UsersController < ApplicationController
   def update
     @user = User.find_by(id: params[:id])
     @user.update(user_params)
+    UserMood.create(user_id: @user.id, mood_id: @user.show_mood.id)
+    # binding.pry
     redirect_to user_path
+  end
+
+  def destroy
+    @user = User.find_by(id: params[:id])
+    @user.destroy
+    redirect_to users_path
   end
 
   # def image_ids=(ids)

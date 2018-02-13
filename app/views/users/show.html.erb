@@ -1,32 +1,45 @@
 <h1>Welcome <%= current_user.name %></h1>
 <%= link_to "Log Out", '/logout', {method: 'delete'} %>
 <br><br>
-<% if @user.images != [] %>
-  <% @user.show_mood.images.each do |image|%>
-    <img src="<%= image.name %>" alt="<%= image.mood.name %>" width="400">
+  <% if current_user != @user %>
+    you are on <%= @user.name %>'s page.
   <% end %>
-  <br>
-  Your are: <%= @user.show_mood.name %>
-  <br>
-  <br>
-  You chose these images:<br>
+<br><br>
 
-  <% @user.images.each do |image| %>
-    <img src="<%= image.name %>" alt="<%= image.mood.name %>" width="200">
-  <% end %>
-  <br>
+<%#*  -- SHOWS THE MAIN IMAGE --%>
+  <% if @user.images != [] %>
 
-  <!-- Your moods are:
-  <ul>
+    <% random = @user.show_mood.images.sample %>
+    <img src="<%= random.name %>" width="400">
+
+    <br>
+    Your are: <%= @user.show_mood.name %>
+    <br>
+    <br>
+    You chose these images:<br>
+
     <% @user.images.each do |image| %>
-      <li><%= image.mood.name %>  <%= image.mood.score %></li>
+      <img src="<%= image.name %>" alt="<%= image.mood.name %>" width="200">
     <% end %>
-  </ul> -->
-<% else %>
-  <%= link_to "Choose images", users_mood_path %>
+
+    <br>
+  <% else %>
+    <%= link_to "Choose images", users_mood_path %>
+  <% end %>
+
+<% if current_user == @user && @user.images != [] %>
+  <%= link_to "Update Your Mood", users_mood_path %>
 <% end %>
 
-<%= link_to "Update Your Mood", users_mood_path %>
-
 <br><br>
+
+<% if @user.mood_match %>
+  Your mood budies:<br>
+  <% @user.mood_match.each do |user_mood| %>
+    <%= link_to User.find_by(id: user_mood.user_id).name, user_path(user_mood.user_id) %>
+  <% end %>
+    <br>
+<% end %>
+<br><br>
+
 <%= button_to "Delete a User", @user, method: 'delete' %>
