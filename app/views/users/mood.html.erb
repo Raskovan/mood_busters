@@ -3,11 +3,19 @@
 <%= form_for @user do |f| %>
 
   <%= f.label "Choose Images:" %><br>
-    <% Image.all.each do |image| %>
+    <% Image.all.in_groups_of(3, false).each do |array_of_three| %>
+    <div class="row">
+
+
+    <% array_of_three.each do |image| %>
+
       <%= check_box_tag "user[image_ids][]", image.id, @user.image_ids.include?(image.id), id: dom_id(image) %>
       <%= label_tag dom_id(image) do%>
-        <%= image_tag image.name, width: "200" %><br>
+        <%= image_tag image.name, class: "student_card card_img card_size" %><br>
       <% end %>
+      <% end %>
+
+    </div>
     <% end %>
     <br>
 
