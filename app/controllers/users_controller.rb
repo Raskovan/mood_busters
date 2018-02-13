@@ -28,6 +28,21 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
+  def mood
+    @user = User.find_by(id: params[:id])
+  end
+
+
+  def edit
+    @user = User.find_by(id: params[:id])
+  end
+
+  def update
+    @user = User.find_by(id: params[:id])
+    @user.update(user_params)
+    redirect_to user_path
+  end
+
   # def image_ids=(ids)
   #   ids.each do |id|
   #     image = Image.find(id)

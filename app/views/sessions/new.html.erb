@@ -8,7 +8,7 @@
   <label for="name">Please Log In</label>
   <%= text_field_tag :'user[name]' %>
   <label for="password"></label>
-  <%= text_field_tag :'user[password]' %>
+  <%= password_field_tag :'user[password]' %>
   <%= submit_tag "Login" %> or <%= link_to "SignUp", new_user_path %>
 <% end %>
 <br>
