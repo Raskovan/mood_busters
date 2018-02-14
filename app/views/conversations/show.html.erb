@@ -1,0 +1,7 @@
+<p><% @conversation.messages.each do |message| %></p>
+<h3>User: <%= message.user.name %></h3>
+<p><%= message.body %></p>
+<% end %>
+
+<%= link_to "Hit em back or nah?", new_user_conversation_message_path(current_user, @conversation)  %>
+<p><%= link_to "Back", user_path(current_user) %> </p>
