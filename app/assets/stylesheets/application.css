@@ -1,19 +1,22 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
- 
+.same_size {
+    /* position: relative;
+    float: left; */
+    width:  100%;
+    height: 100%;
+    /* background-position: 50% 50%;
+    background-repeat:   no-repeat;
+    background-size:     cover; */
+    opacity: 0.5;
+}
+.background {
+    background-color: black;
+}
+
+
+
+/* .image_section{float:left; margin-left:30px;}
+
+
  .card_size {
    max-width: 12rem;
    max-height: 20rem;
@@ -44,4 +47,4 @@
  .student_card:hover {
    transform: scale(1.1);
    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
- }
+ } */

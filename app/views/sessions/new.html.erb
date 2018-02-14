@@ -1,18 +1,71 @@
-<h1>Welcome to the Mood Busters!</h1>
+<%#*<h1>Welcome to the Mood Busters!</h1>%>
 
-<% if flash[:message] %>
-  <i><%= flash[:message] %></i> <br>
-<% end %>
 
-<%= form_tag '/login' do %>
-  <label for="name">Please Log In</label>
-  <%= text_field_tag :'user[name]' %>
-  <label for="password"></label>
-  <%= password_field_tag :'user[password]' %>
-  <%= submit_tag "Login" %> or <%= link_to "SignUp", new_user_path %>
-<% end %>
-<br>
+<style>
 
-<% Image.order("RANDOM()").limit(3).each do |image| %>
-  <img src="<%= image.name %>" alt="<%= image.mood.name %>" width="400"><br>
+  .same_size {
+      position: relative;
+      float: left;
+      width:  100%;
+      height: 100%;
+      background-position: 50% 50%;
+      background-repeat:   no-repeat;
+      background-size:     cover;
+      opacity: 0.5;
+  }
+.background {
+      background-color: black;
+  }
+
+.welcome {
+   position: absolute;
+   width: 100%;
+   color: white;
+   font-size: 3.5em;
+   left: 0;
+   text-align:center;
+   top: 400px;
+}
+.login {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 500px;
+  text-align:center;
+  color: white;
+}
+
+</style>
+
+<div class="background">
+  <% Image.order("RANDOM()").limit(9).in_groups_of(3, false) do |image_group| %>
+  <div class="row no-gutters">
+    <% image_group.each do |image| %>
+    <div class="col-sm">
+      <img src="<%= image.name %>" alt="<%= image.mood.name %>" class="img-fluid full-width same_size">
+      </div>
+    <% end %>
+    </div>
+
+
 <% end %>
+</div>
+    <div class="welcome">Welcome to the Mood Buster!</div>
+
+    <% if flash[:message] %>
+      <i><%= flash[:message], style='alert alert-danger' %></i> <br>
+    <% end %>
+
+<div class="login form-group">
+    <%= form_tag '/login' do %>
+      <!-- <label for="name">Please Log In</label> -->
+      <label for="exampleInputEmail1">Your Name</label>
+      <%= text_field_tag :'user[name]', placeholder: "Enter email" %>
+
+      <!-- <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"> -->
+
+      <label for="password"></label>
+      <%= password_field_tag :'user[password]' %>
+      <%= submit_tag "Login", class: "btn btn-primary" %> or <%= link_to "SignUp", new_user_path %>
+    <% end %>
+    </div>
