@@ -35,7 +35,6 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
     @user.update(user_params)
     UserMood.create(user_id: @user.id, mood_id: @user.show_mood.id)
-    # binding.pry
     redirect_to user_path
   end
 

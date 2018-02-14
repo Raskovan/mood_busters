@@ -1,5 +1,5 @@
 <h1>Welcome <%= current_user.name %></h1>
-<%= link_to "Log Out", '/logout', {method: 'delete'} %>
+<%= button_to "Log Out", '/logout', {method: 'delete'} %>
 <br><br>
   <% if current_user != @user %>
     you are on <%= @user.name %>'s page.
