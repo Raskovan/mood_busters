@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title></title>
+  </head>
+<body>
+
+<header class="bg-dark">
+  <nav class="navbar">
+    <div class="container">
+      <a class="navbar-brand text-light text-uppercase display-1" href="/">MoodBuster</a>
+    <div class="d-flex justify-content-end">
+      <div class="p-2">
+        <%= button_to "Log Out", '/logout', {method: 'delete', class: "btn btn-secondary"} %></div>
+      <div class="p-2">
+        <%= button_to "Delete Profile", @user, method: 'delete', class: "btn btn-danger" %></div>
+    </div>
+  </nav>
+
+</header>
+  <div class="container my-4">
+    <div class="row">
+      <%= yield %>
+    </div>
+  </div>
+
+    <nav class="navbar sticky-bottom bg-dark">
+      <div class="container">
+        <span class="text-muted">Made by Osama & Alex in // FlatIron School</span>
+      </div>
+    </nav>
+  </body>
+</html>

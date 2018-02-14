@@ -1,7 +1,11 @@
-<%#*<h1>Welcome to the Mood Busters!</h1>%>
-
-
 <style>
+
+.on_top {
+  position: absolute;
+  top:0;
+  /* left:0; */
+  width: 100%;
+}
 
   .same_size {
       position: relative;
@@ -15,13 +19,24 @@
   }
 .background {
       background-color: black;
+      position: relative;
   }
+
+  .text_on_background {
+    top:0;
+    left:0;
+    position: absolute;
+    color: white;
+    width: 100%;
+    text-align: center;
+  }
+
 
 .welcome {
    position: absolute;
    width: 100%;
    color: white;
-   font-size: 3.5em;
+   /* font-size: 3.5em; */
    left: 0;
    text-align:center;
    top: 400px;
@@ -35,6 +50,10 @@
   color: white;
 }
 
+.form_fields {
+  width: 30%;
+}
+
 </style>
 
 <div class="background">
@@ -46,26 +65,33 @@
       </div>
     <% end %>
     </div>
-
-
 <% end %>
+
+<div class="container d-flex h-100">
+    <div class="row justify-content-center align-self-center display-3 text_on_background">Welcome to the Mood Buster!</div>
 </div>
-    <div class="welcome">Welcome to the Mood Buster!</div>
 
-    <% if flash[:message] %>
-      <i><%= flash[:message], style='alert alert-danger' %></i> <br>
-    <% end %>
 
-<div class="login form-group">
-    <%= form_tag '/login' do %>
-      <!-- <label for="name">Please Log In</label> -->
-      <label for="exampleInputEmail1">Your Name</label>
-      <%= text_field_tag :'user[name]', placeholder: "Enter email" %>
 
-      <!-- <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"> -->
+<div class="on_top">
+  <%= form_tag '/login', {class: "form-inline on_top"} do %>
+
+      <label for="name"></label>
+      <%= text_field_tag :'user[name]', nil, {placeholder: "Your name", class: "form-control"} %>
 
       <label for="password"></label>
-      <%= password_field_tag :'user[password]' %>
-      <%= submit_tag "Login", class: "btn btn-primary" %> or <%= link_to "SignUp", new_user_path %>
-    <% end %>
+      <%= password_field_tag :'user[password]', nil, {placeholder: "Password", class: "form-control"} %>
+
+    <div class="login">
+      <%= submit_tag "Login", class: "btn btn-primary" %> or <%= link_to "SignUp", new_user_path, class: "btn btn-primary" %>
     </div>
+  <% end %>
+</div>
+
+
+
+</div>
+<!--
+    <% if flash[:message] %>
+      <i><%= flash[:message], style='alert alert-danger' %></i> <br>
+    <% end %> -->

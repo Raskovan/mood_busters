@@ -1,23 +1,29 @@
-<h1>Whats your mood</h1>
+<div class="container text-center">
+  <h1>Whats your mood today, <%= @user.name %>?</h1>
+  <h4> Choose Multiple Images:</h4>
+</div>
 
-<%= form_for @user do |f| %>
-
-  <%= f.label "Choose Images:" %><br>
-    <% Image.all.in_groups_of(3, false).each do |array_of_three| %>
-    <div class="row">
-
-
-    <% array_of_three.each do |image| %>
-
-      <%= check_box_tag "user[image_ids][]", image.id, @user.image_ids.include?(image.id), id: dom_id(image) %>
-      <%= label_tag dom_id(image) do%>
-        <%= image_tag image.name, class: "student_card card_img card_size" %><br>
-      <% end %>
-      <% end %>
-
-    </div>
+<div class="container-fluid">
+<div class="row">
+  <%= form_for @user do |f| %>
+    <% Image.all.in_groups_of(4, false).each do |array_of_three| %>
+      <div class="col">
+        <% array_of_three.each do |image| %>
+          <%= check_box_tag "user[image_ids][]", image.id, @user.image_ids.include?(image.id), id: dom_id(image) %>
+          <%= label_tag dom_id(image) do%>
+            <%= image_tag image.name, width: "250px", height: "180px" %>
+        <!-- class: "student_card card_img card_size" -->
+        <% end %>
     <% end %>
-    <br>
+</div>
+  <% end %>
+  <div class="d-flex justify-content-center">
+    <div class="p-2">
+    <%= f.submit "Update Your Mood", class: "btn btn-warning align-center btn-lg" %>
+    </div>
+  </div>
 
-  <%= f.submit "Update Your Mood" %>
+
 <% end %>
+</div>
+</div>
