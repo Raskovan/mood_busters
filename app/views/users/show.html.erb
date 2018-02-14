@@ -32,6 +32,13 @@
 <% end %>
 
 <br><br>
+ <% if conversation = Conversation.find_by(sender_id: current_user.id, recipient_id: @user.id) %>
+      <p><%= link_to "Message",  new_user_conversation_message_path(current_user, conversation) %></p>
+ <% else %>
+      <p><%= link_to "Message",  new_user_conversation_message_path(current_user, Conversation.create(sender_id: current_user.id, recipient_id: @user.id)) %></p>
+<% end %>
+
+<%= link_to "Your Messages", user_conversations_path(current_user) %>
 
 <% if @user.mood_match %>
   Your mood budies:<br>

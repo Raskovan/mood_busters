@@ -2,6 +2,8 @@ class User < ApplicationRecord
 
   has_secure_password
 
+  has_many :conversations, :foreign_key => :sender_id
+
   has_many :user_images
   has_many :images, through: :user_images
 
