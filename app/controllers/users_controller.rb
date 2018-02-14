@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  layout "user"
+
+
   def welcome
      require_logged_in
   end

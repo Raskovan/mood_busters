@@ -1,15 +1,28 @@
-<h1>Create a User</h1>
 
-<%= form_for @user do |f| %>
-  <%= f.label "Name" %>
-  <%= f.text_field :name %><br>
-  <br>
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-  <br><br>
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %>
-  <br><br>
+<div class="container-fluid">
+  <h1 class="text-center">Create an Account</h1>
+  <div class="form-row">
 
-  <%= f.submit %>
+  </div>
+  <%= form_for @user do |f| %>
+    <div class="form-group text-center">
+      <!-- <%= f.label "Name" %> -->
+      <%= f.text_field :name, placeholder: "Your Name", class: "form-control-lg" %>
+    </div>
+
+    <div class="form-group text-center">
+      <!-- <%= f.label :password %> -->
+      <%= f.password_field :password, placeholder: "Your Password", class: "form-control-lg" %>
+    </div>
+
+    <div class="form-group text-center">
+      <!-- <%= f.label :password_confirmation %> -->
+      <%= f.password_field :password_confirmation, placeholder: "Confirm Password", class: "form-control-lg" %>
+    </div>
+    <div class="form-group text-center">
+  <%= f.submit "Create", class: 'btn btn-danger btn-group-lg text-center' %>
+  </div>
 <% end %>
+</div>
+
+</div>

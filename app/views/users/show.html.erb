@@ -1,45 +1,91 @@
-<h1>Welcome <%= current_user.name %></h1>
-<%= button_to "Log Out", '/logout', {method: 'delete'} %>
-<br><br>
-  <% if current_user != @user %>
-    you are on <%= @user.name %>'s page.
-  <% end %>
-<br><br>
+<div class="col-sm-8">
+<div class="row">
+
+
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="col-sm-8">
+        <h1>Welcome <%= current_user.name %>!</h1>
+          <% if @user.images != [] %>
+            <h6>Your are <%= @user.show_mood.name %> today ...</h6>
+          <% end %>
+          <% if current_user != @user %>
+            <div class="alert alert-danger" role="alert">
+              You are viewing <%= @user.name %>'s page.
+            </div>
+          <% end %>
+        </div>
+
+      <div class="col-sm-4 justify-content-end">
+        <% if current_user == @user && @user.images != [] %>
+          <%= link_to "Update Your Mood", users_mood_path, class: "btn btn-warning btn-lg" %>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+
+</div>
 
 <%#*  -- SHOWS THE MAIN IMAGE --%>
   <% if @user.images != [] %>
 
     <% random = @user.show_mood.images.sample %>
-    <img src="<%= random.name %>" width="400">
+    <img src="<%= random.name %>" width="100%">
 
-    <br>
-    Your are: <%= @user.show_mood.name %>
     <br>
     <br>
     You chose these images:<br>
 
-    <% @user.images.each do |image| %>
-      <img src="<%= image.name %>" alt="<%= image.mood.name %>" width="200">
-    <% end %>
+    <div class="container" >
+      <div class="row">
 
+        <% @user.images.in_groups_of(4, false).each do |array_of_four| %>
+
+            <% array_of_four.each do |image|%>
+            <div class="col-3">
+              <img src="<%= image.name %>" alt="<%= image.mood.name %>" width="180px" height="130px">
+              </div>
+          <% end %>
+
+        <% end %>
     <br>
+    </div>
+    </div>
   <% else %>
     <%= link_to "Choose images", users_mood_path %>
   <% end %>
 
-<% if current_user == @user && @user.images != [] %>
-  <%= link_to "Update Your Mood", users_mood_path %>
-<% end %>
 
-<br><br>
 
-<% if @user.mood_match %>
-  Your mood budies:<br>
-  <% @user.mood_match.each do |user_mood| %>
-    <%= link_to User.find_by(id: user_mood.user_id).name, user_path(user_mood.user_id) %>
-  <% end %>
-    <br>
-<% end %>
-<br><br>
+  </div>
 
-<%= button_to "Delete a User", @user, method: 'delete' %>
+
+
+<div class="col-sm-4">
+    <span class="badge badge-secondary float-right">
+    Meet people who feel the same</span> <br><br>
+    <% if @user.mood_match.present? %>
+      <% @user.mood_match.each do |user_mood| %>
+
+        <div class="card">
+          <img class="card-img-top" src="<%= Image.find_by(mood_id: user_mood.mood_id).name %>" alt="Mood image">
+
+          <div class="card-body">
+            <h4 class="card-title">
+            <%= User.find_by(id: user_mood.user_id).name %> is <%= Mood.find_by(id: user_mood.mood_id).name %></h4>
+            <p class="card-text"></p>
+            <%= link_to "See the profile", user_path(user_mood.user_id), class: "btn btn-secondary" %>
+            <!-- <a href="#!" class="btn btn-primary">Go somewhere</a> -->
+            <!-- User.find_by(id: user_mood.user_id).name -->
+          </div>
+
+        </div><br>
+      <% end %>
+
+    <% else %>
+      <p class="float-right">No friends ;( yet... noone feels the same.</p>
+    <% end %>
+</div>
+<%#= button_to "Delete a User", @user, method: 'delete' %>
