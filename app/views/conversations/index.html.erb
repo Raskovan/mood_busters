@@ -1,4 +1,35 @@
-<% @conversations.each do |conversation| %>
-<% recipient = conversation.recipient_id %>
-<p><%= link_to "#{User.find_by(id: recipient).name}", user_conversation_path(current_user, conversation) %></p>
-<% end %>
+<%#*<div class="container-fluid p-0">%>
+
+
+<% all_user_conversations = Conversation.where(recipient_id: current_user.id).or(Conversation.where(sender_id: current_user.id)) %>
+<div class="container">
+  <h4 class="display-4">Your Inbox</h4>
+</div>
+
+
+
+<div class="row">
+
+
+  <% all_user_conversations.each do |conversation| %>
+  <div class="card-deck m-0">
+    <div class="card m-2">
+      <div class="card-body">
+          <h4 class="card-title">Conversation with <%= User.find_by(id: conversation.recipient_id).name %></h4>
+            <% conversation.messages.each do |message| %>
+              <% if User.find_by(id: message.user_id) == current_user %>
+                <p class="font-weight-bold text-secondary">You</p>
+              <% else %>
+                <p class="font-weight-bold text-secondary"><%= User.find_by(id: message.user_id).name %></p>
+              <% end %>
+              <ul>
+                <li><%= message.body %></li>
+              </ul>
+            <% end %>
+
+          <%= link_to "Reply", new_user_conversation_message_path(current_user, conversation), class: "card-link" %>
+        </div>
+    </div>
+    </div>
+  <% end %>
+  </div>

@@ -10,11 +10,13 @@
           <% if @user.images != [] %>
             <p class="display-4 text-danger"><%= current_user.name %>, you are <%= @user.show_mood.name %> today...</p>
           <% end %>
+
           <% if current_user != @user %>
             <div class="alert alert-danger" role="alert">
               You are viewing <%= @user.name %>'s page.
             </div>
           <% end %>
+
         </div>
 
       <div class="col-sm-4 d-flex justify-content-end">
@@ -98,9 +100,10 @@
 
               <%= link_to "Send a message", new_user_conversation_message_path(current_user, conversation), class: "btn btn-secondary btn-sm" %>
             <% else %>
-              <%= link_to "Send a message", new_user_conversation_message_path(current_user, Conversation.create(sender_id: current_user.id, recipient_id: recipient.id)), class: "btn btn-secondary btn-sm" %>
-           <% end %>
+              <%= link_to "Create a message", user_conversations_path(recipient.id), method: :post, class: "btn btn-secondary btn-sm" %>
 
+           <% end %>
+<%# binding.pry %>
 
 
 

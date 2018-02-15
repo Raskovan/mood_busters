@@ -1,18 +1,31 @@
+<div class="">
 
-<p><% @conversation.messages.each do |message| %></p>
-<p><%= message.user.name %></p>
-<p><%= message.body %></p>
-<% end %>
+  <h4 class="display-4">Respond</h4>
+  <div class="jumbotron">
+    <div class="container">
+      <p class="font-weight-bold">Your conversation with <%= User.find_by(id: @conversation.recipient_id).name %>:</p>
+
+  <p><% @conversation.messages.each do |message| %></p>
+    <h4 class="font-weight-bold text-secondary"><%= message.user.name %></h4>
+    <ul>
+      <li><%= message.body %></li>
+    </ul>
+  <% end %>
+
+  <%= form_for @message  do |f| %>
+    <!-- <%= f.label :user_id%> -->
+    <%= f.hidden_field :user_id, value: current_user.id%>
+    <%= f.hidden_field :conversation_id, value: @conversation.id%>
+    <%#= f.label "Write your message" %>
+    <div class="">
+      <%= f.text_area :body, size: "40x10", placeholder: "Write your message here" %>
+    </div>
+
+    <%= f.submit "Send", class: "btn btn-secondary" %>
+
+  <% end %>
 
 
-<%= form_for @message  do |f| %>
-  <%= f.label :user_id%>
-  <%= f.text_field :user_id, value: current_user.id%>
-  <%= f.hidden_field :conversation_id, value: @conversation.id%>
-  <%= f.label :body %>
-  <%= f.text_field :body %>
-  <%= f.submit %>
-<% end %>
-
-
-<%= link_to "Your page", user_path(current_user) %>
+<%#= link_to "Your page", user_path(current_user) %>
+</div>
+</div>

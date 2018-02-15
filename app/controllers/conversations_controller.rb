@@ -1,6 +1,9 @@
 class ConversationsController < ApplicationController
   before_action :authenticate_user
   before_action :set_current_conversation, only: [:edit, :update]
+  skip_before_action :verify_authenticity_token, :only => :create
+
+  layout "user"
 
   def index
     @users = User.all
@@ -12,8 +15,8 @@ class ConversationsController < ApplicationController
   end
 
   def create
-    @conversation = Conversation.find_or_create_by(conversation_params)
-    redirect_to  new_user_conversation_message_path
+    @conversation = Conversation.find_or_create_by(recipient_id: params[:user_id], sender_id: current_user.id)
+    redirect_to  new_user_conversation_message_path(current_user, @conversation)
   end
 
   def show
