@@ -17,25 +17,34 @@
 <header class="bg-dark">
   <nav class="navbar">
     <div class="container">
-      <a class="navbar-brand text-light text-uppercase display-1" href="/">MoodBuster</a>
+      <a class="navbar-brand text-light text-uppercase display-1" href="/">MoodBuster!</a>
     <div class="d-flex justify-content-end">
-      <div class="p-2">
-        <%= button_to "Log Out", '/logout', {method: 'delete', class: "btn btn-secondary"} %></div>
-      <div class="p-2">
+      <% if current_user.id != nil %>
+        <div class="p-2 text-light btn-link">
+          <%= link_to "Hey, #{current_user.name}", current_user, class: "btn text-danger" %>
+        </div>
+        <div class="p-2">
+          <%= link_to "Your Inbox", user_conversations_path(current_user), class: "btn btn-outline-light" %></div>
+        <div class="p-2">
+          <%= button_to "Log Out", '/logout', {method: 'delete', class: "btn btn-secondary"} %></div>
+        <div class="p-2">
         <%= button_to "Delete Profile", @user, method: 'delete', class: "btn btn-danger" %></div>
+        <% end %>
     </div>
   </nav>
 
+
+
 </header>
-  <div class="container my-4">
+  <div class="container mt-1 mb-5">
     <div class="row">
       <%= yield %>
     </div>
   </div>
 
-    <nav class="navbar sticky-bottom bg-dark">
+    <nav class="navbar fixed-bottom bg-dark">
       <div class="container">
-        <span class="text-muted">Made by Osama & Alex in // FlatIron School</span>
+        <span class="text-muted">Made by Osama & Alex @ // FlatIron School, 2018 .MOD 2</span>
       </div>
     </nav>
   </body>

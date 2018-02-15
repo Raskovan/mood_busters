@@ -2,13 +2,13 @@
 <div class="row">
 
 
-  <div class="container-fluid">
+  <div class="container">
     <div class="row">
 
       <div class="col-sm-8">
-        <h1>Welcome <%= current_user.name %>!</h1>
+<%#*        <h1 class="display-4">Welcome %><%#= current_user.name %><%#*!</h1>%>
           <% if @user.images != [] %>
-            <h6>Your are <%= @user.show_mood.name %> today ...</h6>
+            <p class="display-4 text-danger"><%= current_user.name %>, you are <%= @user.show_mood.name %> today...</p>
           <% end %>
           <% if current_user != @user %>
             <div class="alert alert-danger" role="alert">
@@ -17,10 +17,14 @@
           <% end %>
         </div>
 
-      <div class="col-sm-4 justify-content-end">
+      <div class="col-sm-4 d-flex justify-content-end">
+        <div class="p-2">
+
+
         <% if current_user == @user && @user.images != [] %>
           <%= link_to "Update Your Mood", users_mood_path, class: "btn btn-warning btn-lg" %>
         <% end %>
+        </div>
       </div>
 
     </div>
@@ -36,7 +40,9 @@
 
     <br>
     <br>
-    You chose these images:<br>
+    <span class="badge badge-secondary">
+    You chose these images:</span>
+    <br><br>
 
     <div class="container" >
       <div class="row">
@@ -44,7 +50,7 @@
         <% @user.images.in_groups_of(4, false).each do |array_of_four| %>
 
             <% array_of_four.each do |image|%>
-            <div class="col-3">
+            <div class="col-3 p-0">
               <img src="<%= image.name %>" alt="<%= image.mood.name %>" width="180px" height="130px">
               </div>
           <% end %>
@@ -60,33 +66,45 @@
 
 
 <br><br>
- <% if conversation = Conversation.find_by(sender_id: current_user.id, recipient_id: @user.id) %>
-      <p><%= link_to "Message",  new_user_conversation_message_path(current_user, conversation) %></p>
- <% else %>
-      <p><%= link_to "Message",  new_user_conversation_message_path(current_user, Conversation.create(sender_id: current_user.id, recipient_id: @user.id)) %></p>
-<% end %>
+ <%# if conversation = Conversation.find_by(sender_id: current_user.id, recipient_id: @user.id) %>
+<%#*      <p>%><%#= link_to "Message",  new_user_conversation_message_path(current_user, conversation) %><%#*</p>%>
+ <%# else %>
+<%#*      <p>%><%#= link_to "Message",  new_user_conversation_message_path(current_user, Conversation.create(sender_id: current_user.id, recipient_id: @user.id)) %><%#*</p>%>
+<%# end %>
 
-<%= link_to "Your Messages", user_conversations_path(current_user) %>
+<%#= link_to "Your Messages", user_conversations_path(current_user) %>
 
 
   </div>
 
 
 
-<div class="col-sm-4">
+<div class="col-sm-4 my-2">
     <span class="badge badge-secondary float-right">
-    Meet people who feel the same</span> <br><br>
+    Meet people who feel the same</span> <br>
     <% if @user.mood_match.present? %>
       <% @user.mood_match.each do |user_mood| %>
-
         <div class="card">
           <img class="card-img-top" src="<%= Image.find_by(mood_id: user_mood.mood_id).name %>" alt="Mood image">
 
           <div class="card-body">
-            <h4 class="card-title">
-            <%= User.find_by(id: user_mood.user_id).name %> is <%= Mood.find_by(id: user_mood.mood_id).name %></h4>
+            <h4 class="card-title font-weight-light">
+            <%= User.find_by(id: user_mood.user_id).name %> is <%= Mood.find_by(id: user_mood.mood_id).name %> too</h4>
             <p class="card-text"></p>
-            <%= link_to "See the profile", user_path(user_mood.user_id), class: "btn btn-secondary" %>
+            <%= link_to "See the profile", user_path(user_mood.user_id), class: "btn btn-secondary btn-sm" %>
+
+            <% recipient = User.find_by(id: user_mood.user_id) %>
+            <% if conversation = Conversation.find_by(sender_id: current_user.id, recipient_id: recipient.id) %>
+
+              <%= link_to "Send a message", new_user_conversation_message_path(current_user, conversation), class: "btn btn-secondary btn-sm" %>
+            <% else %>
+              <%= link_to "Send a message", new_user_conversation_message_path(current_user, Conversation.create(sender_id: current_user.id, recipient_id: recipient.id)), class: "btn btn-secondary btn-sm" %>
+           <% end %>
+
+
+
+
+
             <!-- <a href="#!" class="btn btn-primary">Go somewhere</a> -->
             <!-- User.find_by(id: user_mood.user_id).name -->
           </div>
@@ -95,7 +113,7 @@
       <% end %>
 
     <% else %>
-      <p class="float-right">No friends ;( yet... noone feels the same.</p>
+      <p class="float-right">No matches ;( yet... noone feels the same.</p>
     <% end %>
 </div>
 <%#= button_to "Delete a User", @user, method: 'delete' %>

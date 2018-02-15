@@ -6,13 +6,12 @@
 
 
 <%= form_for @message  do |f| %>
-<%= f.label :user_id%>
-<%= f.text_field :user_id, value: current_user.id%>
-<%= f.hidden_field :conversation_id, value: @conversation.id%>
-<%= f.label :body %>
-<%= f.text_field :body %>
-<%= f.submit %>
-
+  <%= f.label :user_id%>
+  <%= f.text_field :user_id, value: current_user.id%>
+  <%= f.hidden_field :conversation_id, value: @conversation.id%>
+  <%= f.label :body %>
+  <%= f.text_field :body %>
+  <%= f.submit %>
 <% end %>
 
 
