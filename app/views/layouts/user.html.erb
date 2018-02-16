@@ -23,6 +23,14 @@
         <div class="p-2 text-light btn-link">
           <%= link_to "Hey, #{current_user.name}", current_user, class: "btn text-light" %>
         </div>
+
+        <div class="p-2">
+          <% if current_user.name == "Admin" %>
+          <%= link_to "Images", images_path, class: "btn btn-success" %><% end %></div>
+          <div class="p-2">
+            <% if current_user.name == "Admin" %>
+            <%= link_to "Moods", moods_path, class: "btn btn-success" %><% end %></div>
+
         <div class="p-2">
           <%= link_to "Your Inbox", user_conversations_path(current_user), class: "btn btn-outline-light" %></div>
         <div class="p-2">
