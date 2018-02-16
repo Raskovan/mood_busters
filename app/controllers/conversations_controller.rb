@@ -2,7 +2,7 @@ class ConversationsController < ApplicationController
   before_action :authenticate_user
   before_action :set_current_conversation, only: [:edit, :update]
   skip_before_action :verify_authenticity_token, :only => :create
-
+  skip_before_action :if_admin
   layout "user"
 
   def index

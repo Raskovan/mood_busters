@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
   layout "user"
+  before_action :require_logged_in, only: [:show]
+  before_action :if_admin, only: [:index]
+  # skip_before_action :if_admin
 
+
+  # binding.pry
 
   def welcome
      require_logged_in
@@ -54,6 +59,10 @@ class UsersController < ApplicationController
   #     self.images << image
   #   end
   # end
+
+  def authenticate
+    redirect_to('/login') unless current_user.nil?
+  end
 
   private
 

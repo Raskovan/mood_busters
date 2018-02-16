@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  skip_before_action :require_logged_in
+  skip_before_action :if_admin
 
   def new
   end

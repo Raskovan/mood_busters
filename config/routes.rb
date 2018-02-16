@@ -21,4 +21,9 @@ Rails.application.routes.draw do
 
   get '/messages', to: 'messages#create'
   post '/messages', to: 'messages#create'
+
+
+  namespace :admin do
+  resources :images, :moods
+end
 end

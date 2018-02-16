@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
   before_action :set_current_conversation, only: [:edit, :update, :show]
+  skip_before_action :if_admin
 
   layout "user"
   #

@@ -1,5 +1,7 @@
 class ImagesController < ApplicationController
 
+
+
   def index
     @images = Image.all
   end
@@ -35,6 +37,8 @@ class ImagesController < ApplicationController
   end
 
   private
+
+
 
   def image_params
     params.require(:image).permit(:name, :mood_id)
