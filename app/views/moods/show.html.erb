@@ -1,6 +1,14 @@
-<h1>Mood</h1>
 
-<%= @mood.name %><br>
-<%= link_to "Edit the Mood", edit_mood_path %><br>
-<%= button_to "Delete the Mood", @mood, method: 'delete' %><br>
-<%= link_to "Go to Moods", moods_path %>
+
+<div class="container">
+  <div class="">
+    <p class="display-4">Mood</p>
+  </div>
+
+  <div class="class="form-inline"">
+    <%= @mood.name %><br>
+    <%= link_to "Edit the Mood", edit_mood_path %><br>
+    <%= button_to "Delete the Mood", @mood, method: 'delete' %><br>
+    <%= link_to "Go to Moods", moods_path %>
+  </div>
+</div>

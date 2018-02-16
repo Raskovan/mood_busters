@@ -1,5 +1,5 @@
 class ImagesController < ApplicationController
-
+  layout "user"
 
 
   def index

@@ -1,8 +1,15 @@
-<h1>Mood: <%= @image.mood.name %></h1>
-<img src="<%= @image.name %>" alt="<%= @image.mood.name %>" width="400"><br>
-<br>
-<%= link_to "Edit Image", edit_image_path %>
-<br><br>
-<%= button_to "Delete Image", @image, method: 'delete' %><br>
-<br>
-<%= link_to "Moods Page", moods_path %>
+<div class="container">
+
+
+  <div class="">
+    <p class="display-4">Mood: <%= @image.mood.name %></p>
+  </div>
+  <div class="">
+    <img src="<%= @image.name %>" alt="<%= @image.mood.name %>" width="70%">
+  </div>
+  <div class="btn-group" role="group">
+    <%= link_to "Edit Image", edit_image_path, class: "btn btn-secondary" %>
+    <%= button_to "Delete Image", @image, method: 'delete', class: "btn btn-secondary" %>
+    <%= link_to "Moods Page", moods_path, class: "btn btn-secondary" %>
+  </div>
+</div>
