@@ -68,10 +68,9 @@
     </div>
     </div>
   <% else %>
-    <%= link_to "Choose images", users_mood_path %>
+  <p class="display-4">Let's start...</p>
+    <%= link_to "Tell us how are you feeling", users_mood_path, class: "btn btn-warning btn-lg" %>
   <% end %>
-
-
 
 <br><br>
  <%# if conversation = Conversation.find_by(sender_id: current_user.id, recipient_id: @user.id) %>

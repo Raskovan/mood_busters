@@ -5,8 +5,6 @@ class UsersController < ApplicationController
   # skip_before_action :if_admin
 
 
-  # binding.pry
-
   def welcome
      require_logged_in
   end
@@ -24,10 +22,8 @@ class UsersController < ApplicationController
   end
 
   def create
-    # binding.pry
     if !@user.valid?
       flash[:notice] = "User name/password taken. Choose another one."
-      # binding.pry
     end
     @user = User.create(user_params)
     return redirect_to '/users/new' unless @user.save
@@ -38,7 +34,6 @@ class UsersController < ApplicationController
   def mood
     @user = User.find_by(id: params[:id])
   end
-
 
   def edit
     @user = User.find_by(id: params[:id])
@@ -55,15 +50,10 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find_by(id: params[:id])
     @user.destroy
+    @moods = UserMood.find_by(user_id: params[:id])
+    @moods.destroy
     redirect_to users_path
   end
-
-  # def image_ids=(ids)
-  #   ids.each do |id|
-  #     image = Image.find(id)
-  #     self.images << image
-  #   end
-  # end
 
   def authenticate
     redirect_to('/login') unless current_user.nil?
