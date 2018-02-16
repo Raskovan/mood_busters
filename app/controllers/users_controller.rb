@@ -24,6 +24,11 @@ class UsersController < ApplicationController
   end
 
   def create
+    # binding.pry
+    if !@user.valid?
+      flash[:notice] = "User name/password taken. Choose another one."
+      # binding.pry
+    end
     @user = User.create(user_params)
     return redirect_to '/users/new' unless @user.save
     session[:user_id] = @user.id

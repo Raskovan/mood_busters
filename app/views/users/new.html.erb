@@ -22,6 +22,11 @@
     <div class="form-group text-center">
   <%= f.submit "Create", class: 'btn btn-danger' %>
   </div>
+  <% if flash[:notice] %>
+  <div <div class="alert alert-danger text-center" role="alert">
+    <strong><%= flash[:notice] %></strong>
+  </div>
+  <% end %>
 <% end %>
 </div>
 
