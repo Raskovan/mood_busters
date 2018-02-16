@@ -93,7 +93,9 @@
     <%# binding.pry %>
       <% current_user.mood_match.each do |user_mood| %>
         <div class="card">
-          <img class="card-img-top" src="<%= Image.find_by(mood_id: user_mood.mood_id).name %>" alt="Mood image">
+          <% random_card = @user.show_mood.images.sample %>
+          <%# random_card = Image.find_by(mood_id: user_mood.mood_id) %>
+          <img class="card-img-top" src="<%= random_card.name %>" alt="Mood image">
 
           <div class="card-body">
             <h4 class="card-title font-weight-light">
