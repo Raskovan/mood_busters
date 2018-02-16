@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180214142437) do
+ActiveRecord::Schema.define(version: 20180215235838) do
 
   create_table "conversations", force: :cascade do |t|
     t.integer "recipient_id"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20180214142437) do
     t.integer "mood_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "current_mood", default: false
   end
 
   create_table "users", force: :cascade do |t|

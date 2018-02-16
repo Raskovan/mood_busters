@@ -37,7 +37,8 @@ class UsersController < ApplicationController
   def update
     @user = User.find_by(id: params[:id])
     @user.update(user_params)
-    UserMood.create(user_id: @user.id, mood_id: @user.show_mood.id)
+    UserMood.where(user_id: @user.id).update_all(current_mood: false)
+    UserMood.create(user_id: @user.id, mood_id: @user.show_mood.id, current_mood: true)
     redirect_to user_path
   end
 

@@ -84,8 +84,9 @@
 <div class="col-sm-4 my-2">
     <span class="badge badge-secondary float-right">
     Meet people who feel the same</span> <br>
-    <% if @user.mood_match.present? %>
-      <% @user.mood_match.each do |user_mood| %>
+    <% if current_user.mood_match.present? %>
+    <%# binding.pry %>
+      <% current_user.mood_match.each do |user_mood| %>
         <div class="card">
           <img class="card-img-top" src="<%= Image.find_by(mood_id: user_mood.mood_id).name %>" alt="Mood image">
 

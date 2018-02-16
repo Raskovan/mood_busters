@@ -37,7 +37,8 @@ class User < ApplicationRecord
 
       all_users_with_mood = UserMood.where(mood_id: last_user_mood_record.mood_id)
 
-      all_users_with_mood_except_self =     UserMood.where(mood_id: last_user_mood_record.mood_id).where('user_id != ?', self.id)
+      all_users_with_mood_except_self = UserMood.where(mood_id: last_user_mood_record.mood_id).where('user_id != ?', self.id).where(current_mood: true)
+      # binding.pry
     end
 
 
