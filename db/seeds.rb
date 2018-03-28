@@ -1,6 +1,4 @@
-ActiveRecord::InternalMetadata.create!([
-  {key: "environment", value: "development"}
-])
+
 
 
 Image.create!([
