@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20180215235838) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "conversations", force: :cascade do |t|
     t.integer "recipient_id"
     t.integer "sender_id"
@@ -28,8 +31,8 @@ ActiveRecord::Schema.define(version: 20180215235838) do
 
   create_table "messages", force: :cascade do |t|
     t.text "body"
-    t.integer "conversation_id"
-    t.integer "user_id"
+    t.bigint "conversation_id"
+    t.bigint "user_id"
     t.boolean "read", default: false
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
