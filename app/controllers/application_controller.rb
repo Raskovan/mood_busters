@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception, prepend: true
+  protect_from_forgery with: :exception
   before_action :current_user, :require_logged_in, :if_admin
   helper_method :current_user, :authenticate_user
 

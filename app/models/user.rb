@@ -1,15 +1,11 @@
 class User < ApplicationRecord
   validates :name, uniqueness: true
-
-  has_secure_password
-
   has_many :conversations, :foreign_key => :sender_id
-
   has_many :user_images
   has_many :images, through: :user_images
-
   has_many :user_moods
   has_many :moods, through: :user_moods
+  has_secure_password
 
   def mood_calculator
     mood_score = 0
