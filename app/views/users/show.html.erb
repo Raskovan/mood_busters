@@ -104,7 +104,7 @@
             <%= link_to "See the profile", user_path(user_mood.user_id), class: "btn btn-secondary btn-sm" %>
 
             <% recipient = User.find_by(id: user_mood.user_id) %>
-            <% if conversation = Conversation.find_by(sender_id: current_user.id, recipient_id: recipient.id) %>
+            <% if conversation = Conversation.find_by(sender_id: current_user.id, recipient_id: recipient.id) || Conversation.find_by(sender_id: recipient.id, recipient_id: current_user.id)%>
 
               <%= link_to "Send a message", new_user_conversation_message_path(current_user, conversation), class: "btn btn-secondary btn-sm" %>
             <% else %>

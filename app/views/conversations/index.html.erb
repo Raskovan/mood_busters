@@ -15,7 +15,14 @@
   <div class="card-deck m-0">
     <div class="card m-2">
       <div class="card-body">
-          <h4 class="card-title">Conversation with <%= User.find_by(id: conversation.recipient_id).name %></h4>
+        <%# binding.pry %>
+          <h4 class="card-title">Conversation with
+            <% if current_user.id != conversation.sender_id%>
+              <%= User.find_by(id: conversation.sender_id).name %>
+              <% else %>
+              <%= User.find_by(id: conversation.recipient_id).name %>
+            <% end %>
+            </h4>
             <% conversation.messages.each do |message| %>
               <% if User.find_by(id: message.user_id) == current_user %>
                 <p class="font-weight-bold text-secondary">You</p>
