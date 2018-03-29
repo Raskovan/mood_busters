@@ -1,6 +1,24 @@
 
 
 
+Mood.create!([
+  {name: "Angry", score: -8},
+  {name: "Annoyed", score: -5},
+  {name: "Apathetic", score: -1},
+  {name: "Manic", score: -6},
+  {name: "Cranky", score: -4},
+  {name: "Depressed", score: -7},
+  {name: "Envious", score: -2},
+  {name: "Frustrated", score: -3},
+  {name: "Amused", score: 5},
+  {name: "Blissful", score: 4},
+  {name: "Blasé", score: 1},
+  {name: "Plucky", score: 6},
+  {name: "Content", score: 2},
+  {name: "Dreamy", score: 3},
+  {name: "Ecstatic", score: 8},
+  {name: "Energetic", score: 7}
+])
 Image.create!([
   {name: "http://thefederalist.com/wp-content/uploads/2014/08/5421578112_394202a150_b1-998x665.jpg", mood_id: 14},
   {name: "https://cdn.images.dailystar.co.uk/dynamic/1/photos/301000/936x622/472301.jpg", mood_id: 6},
@@ -34,22 +52,4 @@ Image.create!([
   {name: "https://media.giphy.com/media/FQKyQYVeGJw3e/giphy.gif", mood_id: 15},
   {name: "https://media.giphy.com/media/6qLjl0JILCUrm/giphy.gif", mood_id: 17},
   {name: "https://media.giphy.com/media/JSEDFfXtKbo64/giphy.gif", mood_id: 16}
-])
-Mood.create!([
-  {name: "Angry", score: -8},
-  {name: "Annoyed", score: -5},
-  {name: "Apathetic", score: -1},
-  {name: "Manic", score: -6},
-  {name: "Cranky", score: -4},
-  {name: "Depressed", score: -7},
-  {name: "Envious", score: -2},
-  {name: "Frustrated", score: -3},
-  {name: "Amused", score: 5},
-  {name: "Blissful", score: 4},
-  {name: "Blasé", score: 1},
-  {name: "Plucky", score: 6},
-  {name: "Content", score: 2},
-  {name: "Dreamy", score: 3},
-  {name: "Ecstatic", score: 8},
-  {name: "Energetic", score: 7}
 ])
